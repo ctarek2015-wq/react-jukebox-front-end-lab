@@ -1,15 +1,15 @@
-import { useState } from "react";
-import heroImg from "./assets/hero.png";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
+import { Route, Routes } from "react-router";
+import Home from "./components/Home";
+import TrackList from "./components/TrackList";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>heeeeeeeeeeeey</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tracks" element={<TrackList />} />
+      </Routes>
     </>
   );
 }
