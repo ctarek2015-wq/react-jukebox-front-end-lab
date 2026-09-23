@@ -19,6 +19,7 @@ function App() {
     };
     fetchTracks();
   }, [loading, formData]);
+
   if (loading === true) return <p>Loading...</p>;
 
   return (
@@ -30,7 +31,6 @@ function App() {
             <Home
               tracks={tracks}
               setTracks={setTracks}
-              loading={loading}
               setLoading={setLoading}
             />
           }

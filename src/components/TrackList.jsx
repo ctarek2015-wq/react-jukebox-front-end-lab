@@ -1,6 +1,15 @@
 import { useNavigate } from "react-router";
 import TrackServices from "../../services/TrackServices";
-const TrackList = ({ tracks, setTracks, loading, setLoading }) => {
+
+const TrackList = ({
+  tracks,
+  setTracks,
+  setLoading,
+  isPlaying,
+  currentTrack,
+  setIsPlaying,
+  setCurrentTrack,
+}) => {
   const navigate = useNavigate();
   const handleDelete = async (id) => {
     try {
@@ -14,6 +23,17 @@ const TrackList = ({ tracks, setTracks, loading, setLoading }) => {
       setLoading(false);
     }
   };
+
+  const handleNowPlaying = (track) => {
+    if (!currentTrack || currentTrack._id !== track._id) {
+      setCurrentTrack(track);
+      setIsPlaying(true);
+    } else {
+      setCurrentTrack(null);
+      setIsPlaying(false);
+    }
+  };
+
   return (
     <>
       <div>
@@ -26,6 +46,11 @@ const TrackList = ({ tracks, setTracks, loading, setLoading }) => {
                 Edit
               </button>
               <button onClick={() => handleDelete(track._id)}>Delete</button>
+              <button onClick={() => handleNowPlaying(track)}>
+                {isPlaying && currentTrack?._id === track._id
+                  ? "Pause"
+                  : "Play"}
+              </button>
             </li>
           ))}
         </ul>

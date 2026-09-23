@@ -28,10 +28,10 @@ const updateTrack = async (trackId, trackData) => {
 };
 
 const deleteTrack = async (trackId) => {
-  const response = await fetch(`${BASE_URL}/${trackId}`, {
+  await fetch(`${BASE_URL}/${trackId}`, {
     method: "DELETE",
   });
-  return response.json();
+  return;
 };
 
 export default { getTracks, createTrack, updateTrack, deleteTrack };
