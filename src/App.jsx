@@ -11,17 +11,30 @@ function App() {
     title: "",
     artist: "",
   });
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchTracks = async () => {
       const data = await TrackServices.getTracks();
       setTracks(data);
     };
     fetchTracks();
-  }, [formData]);
+  }, [loading, formData]);
+  if (loading === true) return <p>Loading...</p>;
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home tracks={tracks} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              tracks={tracks}
+              setTracks={setTracks}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          }
+        />
         <Route
           path="/add-track"
           element={<TrackForm formData={formData} setFormData={setFormData} />}
