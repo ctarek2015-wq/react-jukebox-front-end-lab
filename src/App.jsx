@@ -1,28 +1,32 @@
-import { Route, Routes, useNavigate } from "react-router";
+import { Route, Routes } from "react-router";
 import { useEffect, useState } from "react";
 import TrackServices from "../services/TrackServices";
 import Home from "./components/Home";
-import TrackList from "./components/TrackList";
 import TrackForm from "./components/TrackForm";
 import "./App.css";
 
 function App() {
   const [tracks, setTracks] = useState([]);
-
+  const [formData, setFormData] = useState({
+    title: "",
+    artist: "",
+  });
   useEffect(() => {
     const fetchTracks = async () => {
       const data = await TrackServices.getTracks();
       setTracks(data);
     };
     fetchTracks();
-  }, []);
+  }, [formData]);
 
   return (
     <>
       <Routes>
         <Route path="/" element={<Home tracks={tracks} />} />
-        <Route path="/tracks" element={<TrackList tracks={tracks} />} />
-        <Route path="/tracks/new" element={<TrackForm />} />
+        <Route
+          path="/add-track"
+          element={<TrackForm formData={formData} setFormData={setFormData} />}
+        />
       </Routes>
     </>
   );

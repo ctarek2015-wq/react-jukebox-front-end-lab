@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 const Home = ({ tracks }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/tracks/new");
+    navigate("/add-track");
   };
   return (
     <div>
