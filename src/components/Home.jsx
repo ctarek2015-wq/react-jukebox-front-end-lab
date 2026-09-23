@@ -8,6 +8,7 @@ const Home = ({ tracks }) => {
   return (
     <div>
       <h1>Welcome to the Jukebox</h1>
+
       <button onClick={handleClick}>New Track</button>
 
       <TrackList tracks={tracks} />

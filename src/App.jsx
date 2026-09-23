@@ -18,7 +18,6 @@ function App() {
     };
     fetchTracks();
   }, [formData]);
-
   return (
     <>
       <Routes>
@@ -26,6 +25,16 @@ function App() {
         <Route
           path="/add-track"
           element={<TrackForm formData={formData} setFormData={setFormData} />}
+        />
+        <Route
+          path="/edit-track/:id"
+          element={
+            <TrackForm
+              formData={formData}
+              setFormData={setFormData}
+              tracks={tracks}
+            />
+          }
         />
       </Routes>
     </>
